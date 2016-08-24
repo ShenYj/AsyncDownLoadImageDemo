@@ -17,6 +17,7 @@
 		F73CEAA61D6BF27F004157B7 /* JSAppsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F73CEAA51D6BF27F004157B7 /* JSAppsModel.m */; };
 		F73CEAA91D6BFFE2004157B7 /* JSAppsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73CEAA81D6BFFE2004157B7 /* JSAppsTableController.m */; };
 		F73CEAAC1D6C1363004157B7 /* JSAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F73CEAAB1D6C1363004157B7 /* JSAppCell.m */; };
+		F742C09F1D6DEBC3009D4E5F /* JSDownLoadImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F742C09E1D6DEBC3009D4E5F /* JSDownLoadImageOperation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,8 @@
 		F73CEAA81D6BFFE2004157B7 /* JSAppsTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAppsTableController.m; sourceTree = "<group>"; };
 		F73CEAAA1D6C1363004157B7 /* JSAppCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSAppCell.h; sourceTree = "<group>"; };
 		F73CEAAB1D6C1363004157B7 /* JSAppCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSAppCell.m; sourceTree = "<group>"; };
+		F742C09D1D6DEBC3009D4E5F /* JSDownLoadImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSDownLoadImageOperation.h; sourceTree = "<group>"; };
+		F742C09E1D6DEBC3009D4E5F /* JSDownLoadImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDownLoadImageOperation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +81,7 @@
 		F73CEA8D1D6BF23E004157B7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F742C09C1D6DEBA5009D4E5F /* Tool */,
 				F73CEA8E1D6BF23E004157B7 /* Controllers */,
 				F73CEA911D6BF23E004157B7 /* Models */,
 				F73CEA921D6BF23E004157B7 /* Views */,
@@ -127,6 +131,15 @@
 				F73CEA9B1D6BF23E004157B7 /* main.m */,
 			);
 			path = SupportingFIles;
+			sourceTree = "<group>";
+		};
+		F742C09C1D6DEBA5009D4E5F /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				F742C09D1D6DEBC3009D4E5F /* JSDownLoadImageOperation.h */,
+				F742C09E1D6DEBC3009D4E5F /* JSDownLoadImageOperation.m */,
+			);
+			path = Tool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +220,7 @@
 				F73CEAAC1D6C1363004157B7 /* JSAppCell.m in Sources */,
 				F73CEAA11D6BF23E004157B7 /* main.m in Sources */,
 				F73CEAA61D6BF27F004157B7 /* JSAppsModel.m in Sources */,
+				F742C09F1D6DEBC3009D4E5F /* JSDownLoadImageOperation.m in Sources */,
 				F73CEA9C1D6BF23E004157B7 /* ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

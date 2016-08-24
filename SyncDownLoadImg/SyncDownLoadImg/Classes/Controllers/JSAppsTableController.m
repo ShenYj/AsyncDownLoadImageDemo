@@ -10,6 +10,9 @@
 #import "JSAppsModel.h"
 #import "JSAppCell.h"
 
+#import "JSDownLoadImageOperation.h"
+
+
 static NSString * const reuseIdentifier = @"reuseIdentifier";
 
 @implementation JSAppsTableController{
@@ -95,16 +98,42 @@ static NSString * const reuseIdentifier = @"reuseIdentifier";
     
     
     // 异步下载图片
-    NSBlockOperation *downLoadImageOperation = [NSBlockOperation blockOperationWithBlock:^{
-        
-        [NSThread sleepForTimeInterval:5]; // 模拟延迟
-        
-        // 下载图片
-        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:model.icon]];
-        UIImage *image = [UIImage imageWithData:data];
+//    NSBlockOperation *downLoadImageOperation = [NSBlockOperation blockOperationWithBlock:^{
+//        
+//        [NSThread sleepForTimeInterval:5]; // 模拟延迟
+//        
+//        // 下载图片
+//        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:model.icon]];
+//        UIImage *image = [UIImage imageWithData:data];
+//        
+//        // 将下载好的图片进行内存缓存
+//        // model.downloadImage = image;
+//        [_imageCache setObject:image forKey:model.icon];
+//        
+//        // 将下载好的图片做本地缓存
+//        [data writeToFile:[_cachePath stringByAppendingPathComponent:model.icon.lastPathComponent] atomically:YES];
+//        
+//        // 返回主线程刷新UI
+//        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//            
+//            // cell.imageView.image = image; 避免重用Cell中有正在执行的下载操作导致图片混乱,直接刷新TableView从内存获取图片
+//            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//            
+//            // 清除操作缓存池中对应的操作
+//            [_operationCache removeObjectForKey:model.icon];
+//            
+//            /*      [_operationCache removeAllObjects];
+//             假设操作的完成时间足够长,因为下载操作异步执行,CPU会随机执行线程上的操作,如果设置了优先级或执行某一线程的概率较高,那么可以肯定,完成有先后,只是不够明显
+//             一旦某个操作提前完成执行了清空操作缓存池,当再次滚动TableView的时候,可能还会出现同一个下载操作重复添加到队列中的问题
+//             所以不应该使用removeAllObjects方法来移除
+//             */
+//            
+//        }];
+//    }];
+    
+    JSDownLoadImageOperation *downLoadImageOperation = [JSDownLoadImageOperation downLoadWithImageUrlString:model.icon withCompleteHandler:^(UIImage *image) {
         
         // 将下载好的图片进行内存缓存
-        // model.downloadImage = image;
         [_imageCache setObject:image forKey:model.icon];
         
         // 将下载好的图片做本地缓存
@@ -126,6 +155,7 @@ static NSString * const reuseIdentifier = @"reuseIdentifier";
              */
             
         }];
+
     }];
     
     // 将操作添加到队列中: 队列当中的操作执行完毕之后,会自动从队列中销毁
@@ -159,7 +189,6 @@ static NSString * const reuseIdentifier = @"reuseIdentifier";
     [_imageCache removeAllObjects];
     
 }
-
 
 
 @end
