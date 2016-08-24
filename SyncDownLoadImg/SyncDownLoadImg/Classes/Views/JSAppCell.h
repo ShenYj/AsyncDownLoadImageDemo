@@ -12,6 +12,5 @@
 
 @interface JSAppCell : UITableViewCell
 
-@property (nonatomic,strong) JSAppsModel *model;
 
 @end

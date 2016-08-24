@@ -14,9 +14,7 @@
 
 @end
 
-@implementation ViewController{
-    JSAppsTableController    *_appsListController;
-}
+@implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,10 +30,10 @@
 
 - (void)clickRightBarButtonItem:(id)sender{
     
-    _appsListController = [[JSAppsTableController alloc] initWithFileName:@"apps"];
-    _appsListController.view.backgroundColor = [UIColor whiteColor];
+    JSAppsTableController *appsListController = [[JSAppsTableController alloc] initWithFileName:@"apps"];
+    appsListController.view.backgroundColor = [UIColor whiteColor];
     
-    [self.navigationController pushViewController:_appsListController animated:YES];
+    [self.navigationController pushViewController:appsListController animated:YES];
     
 }
 
@@ -52,5 +50,7 @@
  7. 使用block时注意循环引用问题
  
  */
+
+
 
 @end

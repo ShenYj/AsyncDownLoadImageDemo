@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface JSAppsTableController : UITableViewController
+
 - (instancetype)initWithFileName:(NSString *)fileName;
+
 @end

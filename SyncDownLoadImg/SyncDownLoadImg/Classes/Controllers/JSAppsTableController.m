@@ -10,10 +10,10 @@
 #import "JSAppsModel.h"
 #import "JSAppCell.h"
 
-
 static NSString * const reuseIdentifier = @"reuseIdentifier";
 
 @implementation JSAppsTableController{
+    
     NSArray <JSAppsModel *>      *_data;             //  数据容器
     NSOperationQueue             *_queue;            //  全局队列
     NSMutableDictionary          *_operationCache;   //  操作缓存池
@@ -44,6 +44,8 @@ static NSString * const reuseIdentifier = @"reuseIdentifier";
     
 }
 
+#pragma mark -- UITableViewDataSource
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _data.count;
 }
@@ -59,7 +61,6 @@ static NSString * const reuseIdentifier = @"reuseIdentifier";
     // 设置占位图
     cell.imageView.image = [UIImage imageNamed:@"user_default"];
     
-    
     // 从缓存中取出图片
     if ([_imageCache objectForKey:model.icon]) {
         cell.imageView.image = [_imageCache objectForKey:model.icon];
@@ -71,12 +72,13 @@ static NSString * const reuseIdentifier = @"reuseIdentifier";
     NSData *data = [NSData dataWithContentsOfFile:[_cachePath stringByAppendingPathComponent:model.icon.lastPathComponent]];
     if (data) {
         cell.imageView.image = [UIImage imageWithData:data];
+        
         // 进行内存缓存
         [_imageCache setObject:[UIImage imageWithData:data] forKey:model.icon];
+        
         NSLog(@"从本地沙盒获取图片:(%@)",[_cachePath stringByAppendingPathComponent:model.icon.lastPathComponent]);
         return cell;
     }
-                      
     
     // 判断操作是否存在
     if ([_operationCache objectForKey:model.icon]) {
@@ -84,8 +86,13 @@ static NSString * const reuseIdentifier = @"reuseIdentifier";
         return cell;
     }
     
-    // 解决循环引用问题
-    __weak typeof(self) weakSelf = self;
+    /*    block内部使用self,不能够说一定存在循环引用
+         self -> _operationCache和_queue -> downLoadImageOperation -> block -> self
+            _operationCache     ->    手动清除downLoadImageOperation
+            _queue              ->    当队列中的操作执行完毕后downLoadImageOperation会自动销毁
+     */
+    //__weak typeof(self) weakSelf = self;
+    
     
     // 异步下载图片
     NSBlockOperation *downLoadImageOperation = [NSBlockOperation blockOperationWithBlock:^{
@@ -107,14 +114,15 @@ static NSString * const reuseIdentifier = @"reuseIdentifier";
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             
             // cell.imageView.image = image; 避免重用Cell中有正在执行的下载操作导致图片混乱,直接刷新TableView从内存获取图片
-            [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
             
             // 清除操作缓存池中对应的操作
             [_operationCache removeObjectForKey:model.icon];
-            /*
+            
+            /*      [_operationCache removeAllObjects];
              假设操作的完成时间足够长,因为下载操作异步执行,CPU会随机执行线程上的操作,如果设置了优先级或执行某一线程的概率较高,那么可以肯定,完成有先后,只是不够明显
              一旦某个操作提前完成执行了清空操作缓存池,当再次滚动TableView的时候,可能还会出现同一个下载操作重复添加到队列中的问题
-             所以不应该使用方法来移除
+             所以不应该使用removeAllObjects方法来移除
              */
             
         }];
@@ -133,6 +141,8 @@ static NSString * const reuseIdentifier = @"reuseIdentifier";
     
     return 68;
 }
+
+#pragma mark -- UITableViewDataDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
