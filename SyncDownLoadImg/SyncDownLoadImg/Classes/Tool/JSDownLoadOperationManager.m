@@ -128,6 +128,7 @@ static id _instanceType = nil;
     
     // 取消上一个下载操作
     [_operationCache[urlString] cancel];
+    
     // 将操作从缓存池中移除
     [_operationCache removeObjectForKey:urlString];
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F70E22041D6E9D0000753D87 /* JSDownLoadOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F70E22031D6E9D0000753D87 /* JSDownLoadOperationManager.m */; };
 		F70E220D1D6EBC9000753D87 /* NSString+JSAppendPath.m in Sources */ = {isa = PBXBuildFile; fileRef = F70E220C1D6EBC9000753D87 /* NSString+JSAppendPath.m */; };
+		F70E22101D6EC12400753D87 /* UIImageView+JSWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F70E220F1D6EC12400753D87 /* UIImageView+JSWebCache.m */; };
 		F73CEA9C1D6BF23E004157B7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F73CEA901D6BF23E004157B7 /* ViewController.m */; };
 		F73CEA9D1D6BF23E004157B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F73CEA951D6BF23E004157B7 /* AppDelegate.m */; };
 		F73CEA9E1D6BF23E004157B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F73CEA961D6BF23E004157B7 /* Assets.xcassets */; };
@@ -27,6 +28,8 @@
 		F70E22031D6E9D0000753D87 /* JSDownLoadOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSDownLoadOperationManager.m; sourceTree = "<group>"; };
 		F70E220B1D6EBC9000753D87 /* NSString+JSAppendPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+JSAppendPath.h"; sourceTree = "<group>"; };
 		F70E220C1D6EBC9000753D87 /* NSString+JSAppendPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+JSAppendPath.m"; sourceTree = "<group>"; };
+		F70E220E1D6EC12400753D87 /* UIImageView+JSWebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+JSWebCache.h"; sourceTree = "<group>"; };
+		F70E220F1D6EC12400753D87 /* UIImageView+JSWebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+JSWebCache.m"; sourceTree = "<group>"; };
 		F73CEA731D6BEFF5004157B7 /* SyncDownLoadImg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SyncDownLoadImg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F73CEA871D6BEFF5004157B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		F73CEA8F1D6BF23E004157B7 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -146,6 +149,8 @@
 				F742C09E1D6DEBC3009D4E5F /* JSDownLoadImageOperation.m */,
 				F70E22021D6E9D0000753D87 /* JSDownLoadOperationManager.h */,
 				F70E22031D6E9D0000753D87 /* JSDownLoadOperationManager.m */,
+				F70E220E1D6EC12400753D87 /* UIImageView+JSWebCache.h */,
+				F70E220F1D6EC12400753D87 /* UIImageView+JSWebCache.m */,
 				F70E220B1D6EBC9000753D87 /* NSString+JSAppendPath.h */,
 				F70E220C1D6EBC9000753D87 /* NSString+JSAppendPath.m */,
 			);
@@ -232,6 +237,7 @@
 				F73CEAA11D6BF23E004157B7 /* main.m in Sources */,
 				F73CEAA61D6BF27F004157B7 /* JSAppsModel.m in Sources */,
 				F742C09F1D6DEBC3009D4E5F /* JSDownLoadImageOperation.m in Sources */,
+				F70E22101D6EC12400753D87 /* UIImageView+JSWebCache.m in Sources */,
 				F73CEA9C1D6BF23E004157B7 /* ViewController.m in Sources */,
 				F70E220D1D6EBC9000753D87 /* NSString+JSAppendPath.m in Sources */,
 			);

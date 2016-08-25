@@ -13,7 +13,6 @@
 
 - (void)main{
     
-    [NSThread sleepForTimeInterval:3];
     
     NSAssert(self.completeHandler != nil, @"completeHandler == nil");
     
@@ -23,6 +22,10 @@
     [data writeToFile:[self.urlString js_appendCachePath] atomically:YES];
     
     UIImage *image = [UIImage imageWithData:data];
+    
+    if (self.cancelled) {
+        return;
+    }
     
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         

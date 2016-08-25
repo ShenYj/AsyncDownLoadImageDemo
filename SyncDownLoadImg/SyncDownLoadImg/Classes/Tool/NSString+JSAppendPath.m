@@ -14,6 +14,7 @@
 - (instancetype)js_appendCachePath{
     
     return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject stringByAppendingPathComponent:self.lastPathComponent];
+    
 }
 
 @end
