@@ -7,14 +7,22 @@
 //
 
 #import "JSDownLoadImageOperation.h"
+#import "NSString+JSAppendPath.h"
 
 @implementation JSDownLoadImageOperation
 
 - (void)main{
     
+    [NSThread sleepForTimeInterval:3];
+    
     NSAssert(self.completeHandler != nil, @"completeHandler == nil");
     
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:self.urlString]]];
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.urlString]];
+    
+    // 写入沙盒
+    [data writeToFile:[self.urlString js_appendCachePath] atomically:YES];
+    
+    UIImage *image = [UIImage imageWithData:data];
     
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
         
@@ -24,10 +32,13 @@
 }
 
 + (instancetype)downLoadWithImageUrlString:(NSString *)urlString withCompleteHandler:(void (^)(UIImage *))completeHandler{
+    
     JSDownLoadImageOperation *operation = [[self alloc] init];
     operation.urlString = urlString;
     operation.completeHandler = completeHandler;
+    
     return operation;
 }
+
 
 @end
