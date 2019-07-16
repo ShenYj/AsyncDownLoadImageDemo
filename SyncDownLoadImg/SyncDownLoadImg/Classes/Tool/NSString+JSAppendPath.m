@@ -11,10 +11,9 @@
 @implementation NSString (JSAppendPath)
 
 // 拼接沙盒存放路径
-- (instancetype)js_appendCachePath{
-    
+- (instancetype)js_appendCachePath
+{
     return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject stringByAppendingPathComponent:self.lastPathComponent];
-    
 }
 
 @end

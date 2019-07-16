@@ -13,65 +13,61 @@
 
 static NSString * const reuseIdentifier = @"reuseIdentifier";
 
-@implementation JSAppsTableController{
+@implementation JSAppsTableController {
     
     NSArray <JSAppsModel *>      *_data;                    //  数据容器
-    
 }
 
-- (instancetype)initWithFileName:(NSString *)fileName{
+- (instancetype)initWithFileName:(NSString *)fileName
+{
     self = [super init];
     if (self) {
-        
         // 成员变量初始化
         _data = [JSAppsModel loadAppsDataWithFileName:fileName];
-        
     }
     return self;
 }
 
-- (void)viewDidLoad{
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self.tableView registerClass:[JSAppCell class] forCellReuseIdentifier:reuseIdentifier];
-    
 }
 
 #pragma mark -- UITableViewDataSource
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     return _data.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     JSAppCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
     JSAppsModel *model = _data[indexPath.row];
     cell.textLabel.text = model.name;
     cell.detailTextLabel.text = model.download;
-    
     // 使用UIImage+JSWebCache分类设置图片
     [cell.imageView js_imageUrlString:model.icon withPlaceHolderImage:@"user_default"];
-    
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return 68;
 }
 
 #pragma mark -- UITableViewDataDelegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
 //    NSLog(@"----->ImageCacheCounts:%zd ----> OperationCacheCounts:%zd ---->CurrentOperationCounts:%zd",_imageCache.count,_operationCache.count,_queue.operationCount);
-    
 }
 
-- (void)dealloc{
+- (void)dealloc
+{
     NSLog(@"%s",__func__);
 }
-
 
 #pragma mark  --  代码重构前的Cell数据源方法
 

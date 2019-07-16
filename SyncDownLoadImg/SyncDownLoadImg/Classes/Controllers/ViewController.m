@@ -16,16 +16,16 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
     [self prepareView];
 }
-// 设置视图
-- (void)prepareView{
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"应用列表" style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBarButtonItem:)];
 
+// 设置视图
+- (void)prepareView
+{
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"应用列表" style:UIBarButtonItemStylePlain target:self action:@selector(clickRightBarButtonItem:)];
 }
 
 - (void)clickRightBarButtonItem:(id)sender{
@@ -34,7 +34,6 @@
     appsListController.view.backgroundColor = [UIColor whiteColor];
     
     [self.navigationController pushViewController:appsListController animated:YES];
-    
 }
 
 /*
@@ -50,7 +49,5 @@
  7. 使用block时注意循环引用问题
  
  */
-
-
 
 @end

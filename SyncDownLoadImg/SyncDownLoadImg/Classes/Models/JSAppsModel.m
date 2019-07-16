@@ -10,7 +10,8 @@
 
 @implementation JSAppsModel
 
-- (instancetype)initWithDict:(NSDictionary *)dict{
+- (instancetype)initWithDict:(NSDictionary *)dict
+{
     self = [super init];
     if (self) {
         [self setValuesForKeysWithDictionary:dict];
@@ -18,31 +19,25 @@
     return self;
 }
 
-+ (instancetype)appWithDict:(NSDictionary *)dict{
++ (instancetype)appWithDict:(NSDictionary *)dict
+{
     return [[self alloc]initWithDict:dict];
 }
 
-- (NSString *)description{
-    
+- (NSString *)description
+{
     return [NSString stringWithFormat:@"name:%@ -icon:%@ -download:%@",_name,_icon,_download];
-    
 }
 
-+ (NSArray <JSAppsModel *> *)loadAppsDataWithFileName:(NSString *)fileName{
-    
++ (NSArray <JSAppsModel *> *)loadAppsDataWithFileName:(NSString *)fileName
+{
     NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"plist"];
-    
     NSArray *data = [NSArray arrayWithContentsOfFile:filePath];
-    
     NSMutableArray *mArr = [NSMutableArray array];
-    
     for (NSDictionary *dict in data) {
-        
         JSAppsModel *model = [self appWithDict:dict];
-        
         [mArr addObject:model];
     }
-    
     return mArr.copy;
 }
 

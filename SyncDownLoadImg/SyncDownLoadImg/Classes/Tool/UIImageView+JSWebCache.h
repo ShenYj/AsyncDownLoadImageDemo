@@ -28,7 +28,11 @@
  @param fillColor        圆角图片外围填充色
  @param completion       完成回调
  */
-- (void)js_imageUrlString:(NSString *)urlString withPlaceHolderImage:(NSString *)placeHolderImage WithSize:(CGSize)size fillClolor:(UIColor *)fillColor completion:(void(^)(UIImage *img))completion;
+- (void)js_imageUrlString:(NSString *)urlString
+     withPlaceHolderImage:(NSString *)placeHolderImage
+                 WithSize:(CGSize)size
+               fillClolor:(UIColor *)fillColor
+               completion:(void(^)(UIImage *img))completion;
 
 
 @end
